@@ -1,16 +1,16 @@
 
-function Home() {
+function RootPage() {
     return (
         <main className="flex flex-col items-center justify-between min-h-screen p-24 text-2xl">
             <h1>
                 Hello from AI Companion!
             </h1>
 
-            <h5>
+            <p className="text-sm">
                 Authenticated
-            </h5>
+            </p>
         </main>
     );
 }
 
-export default Home;
+export default RootPage;
