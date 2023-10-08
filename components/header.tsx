@@ -6,6 +6,7 @@ import { SignedIn, UserButton } from '@clerk/nextjs'
 import { Poppins } from 'next/font/google';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import ThemeSwitch from './theme-switch';
 
 const font = Poppins({
     weight: '600',
@@ -36,6 +37,8 @@ function Header() {
                     Upgrade
                     <Sparkles className="w-4 h-4 text-white fill-white ml-2" />
                 </Button>
+
+                <ThemeSwitch />
 
                 <SignedIn>
                     <UserButton afterSignOutUrl="/" />
