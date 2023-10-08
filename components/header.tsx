@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { SignedIn, UserButton } from '@clerk/nextjs'
-import { Poppins } from 'next/font/google';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import ThemeSwitch from './theme-switch';
+import MobileSidebar from './mobile-sidebar';
+
+import { Poppins } from 'next/font/google';
+import { cn } from '@/lib/utils';
 
 const font = Poppins({
     weight: '600',
@@ -15,7 +17,7 @@ const font = Poppins({
 
 function Header() {
     return (
-        <header className="fixed w-full z-50 flex justify-between items-center px-4 py-2 border-primary/10 bg-secondary">
+        <header className="fixed w-full h-16 z-50 flex justify-between items-center px-4 py-2 border-primary/10 bg-secondary">
             <div className="flex gap-x-2 items-center">
                 <Link href="/">
                     <h2 className={cn(
@@ -26,7 +28,7 @@ function Header() {
                     </h2>
                 </Link>
 
-                <Menu className="block md:hidden" />
+                <MobileSidebar />
             </div>
 
             <div className="flex gap-x-4 items-center">
