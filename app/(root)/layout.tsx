@@ -9,7 +9,7 @@ function RootLayout({ children }: { children: React.ReactNode}) {
                 <Sidebar />
             </div>
 
-            <main>
+            <main className="md:pl-20 pt-16 h-full">
                 { children }
             </main>
         </>

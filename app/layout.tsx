@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +21,7 @@ export default function GlobalLayout({ children }: { children: React.ReactNode})
                 lang="en"
                 suppressHydrationWarning
             >
-                <body className={inter.className}>
+                <body className={cn('bg-secondary', inter.className)}>
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="system"
