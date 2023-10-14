@@ -17,7 +17,7 @@ const font = Poppins({
 
 function Header() {
     return (
-        <header className="fixed w-full h-16 z-50 flex justify-between items-center px-4 py-2 border-primary/10 bg-secondary">
+        <header className="fixed w-full h-16 z-50 flex justify-between items-center px-4 py-2 border-b border-primary/10 bg-secondary">
             <div className="flex gap-x-2 items-center">
                 <Link href="/">
                     <h2 className={cn(
