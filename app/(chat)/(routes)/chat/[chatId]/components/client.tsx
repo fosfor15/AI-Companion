@@ -2,13 +2,14 @@
 
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useCompletion } from 'ai/react';
 
 import { Companion, Message } from '@prisma/client';
 
-import { ChatHeader } from '@/components/chat-header';
-// import { ChatMessages } from '@/components/chat-messages';
-// import { ChatForm } from '@/components/chat-form';
-// import { ChatMessageProps } from '@/components/chat-message';
+import ChatHeader from '@/components/chat-header';
+import ChatForm from '@/components/chat-form';
+import ChatMessages from '@/components/chat-messages';
+import { ChatMessageProps } from '@/components/chat-message';
 
 interface ChatClientProps {
     companion: Companion & {
@@ -21,9 +22,9 @@ interface ChatClientProps {
 
 function ChatClient({ companion }: ChatClientProps) {
     const router = useRouter();
-    // const [ messages, setMessages ] = useState<ChatMessageProps[]>(companion.messages);
+    const [ messages, setMessages ] = useState<ChatMessageProps[]>(companion.messages);
 
-    /* const { input, isLoading, handleInputChange, handleSubmit, setInput } = useCompletion({
+    const { input, isLoading, handleInputChange, handleSubmit, setInput } = useCompletion({
         api: `/api/chat/${companion.id}`,
         onFinish(_prompt, completion) {
             const systemMessage: ChatMessageProps = {
@@ -31,28 +32,27 @@ function ChatClient({ companion }: ChatClientProps) {
                 content: completion
             };
 
-            setMessages(current => [...current, systemMessage]);
+            setMessages(current => [ ...current, systemMessage ]);
             setInput('');
 
             router.refresh();
         }
-    }); */
+    });
 
-    /* const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         const userMessage: ChatMessageProps = {
             role: 'user',
             content: input
         };
 
-        setMessages(current => [...current, userMessage]);
-
-        handleSubmit(e);
-    }; */
+        setMessages(current => [ ...current, userMessage ]);
+        handleSubmit(event);
+    };
 
     return (
         <div className="flex flex-col h-full p-4 space-y-2">
             <ChatHeader companion={companion} />
-            {/* <ChatMessages
+            <ChatMessages
                 companion={companion}
                 isLoading={isLoading}
                 messages={messages}
@@ -62,7 +62,7 @@ function ChatClient({ companion }: ChatClientProps) {
                 input={input}
                 handleInputChange={handleInputChange}
                 onSubmit={onSubmit}
-            /> */}
+            />
         </div>
     );
 };

@@ -20,7 +20,7 @@ interface ChatHeaderProps {
     };
 }
 
-export const ChatHeader = ({ companion }: ChatHeaderProps) => {
+function ChatHeader({ companion }: ChatHeaderProps) {
     const router = useRouter();
     const { user } = useUser();
     const { toast } = useToast();
@@ -93,3 +93,5 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
         </div>
     );
 };
+
+export default ChatHeader;
