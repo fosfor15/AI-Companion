@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 import { useProModal } from '@/app/hooks/use-pro-modal';
 
 
-interface HeaderProp {
+interface HeaderProps {
     isPro: boolean
 }
 
@@ -22,7 +22,7 @@ const font = Poppins({
     subsets: ['latin']
 });
 
-function Header({ isPro }: HeaderProp) {
+function Header({ isPro }: HeaderProps) {
     const { onOpen } = useProModal();
 
     return (
