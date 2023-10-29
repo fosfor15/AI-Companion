@@ -1,21 +1,30 @@
 'use client';
 
 import Link from 'next/link';
-import { Sparkles } from 'lucide-react';
+import { Poppins } from 'next/font/google';
+
 import { SignedIn, UserButton } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button';
+import { Sparkles } from 'lucide-react';
 import ThemeSwitch from './theme-switch';
 import MobileSidebar from './mobile-sidebar';
 
-import { Poppins } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { useProModal } from '@/app/hooks/use-pro-modal';
+
+
+interface HeaderProp {
+    isPro: boolean
+}
 
 const font = Poppins({
     weight: '600',
     subsets: ['latin']
 });
 
-function Header() {
+function Header({ isPro }: HeaderProp) {
+    const { onOpen } = useProModal();
+
     return (
         <header className="fixed w-full h-16 z-50 flex justify-between items-center px-4 py-2 border-b border-primary/10 bg-secondary">
             <div className="flex gap-x-2 items-center">
@@ -32,13 +41,14 @@ function Header() {
             </div>
 
             <div className="flex gap-x-4 items-center">
-                <Button
+                { !isPro && <Button
                     size="sm"
                     variant="premium"
+                    onClick={onOpen}
                 >
                     Upgrade
                     <Sparkles className="w-4 h-4 text-white fill-white ml-2" />
-                </Button>
+                </Button> }
 
                 <ThemeSwitch />
 

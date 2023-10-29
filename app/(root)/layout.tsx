@@ -1,12 +1,16 @@
 import Header from '@/components/header';
 import Sidebar from '@/components/sidebar';
 
-function RootLayout({ children }: { children: React.ReactNode}) {
+import { checkSubscription } from '@/lib/subscription';
+
+async function RootLayout({ children }: { children: React.ReactNode}) {
+    const isPro = await checkSubscription();
+
     return (
         <>
-            <Header />
+            <Header isPro={isPro} />
             <div className="fixed hidden md:flex w-20 h-full mt-16 flex-col inset-y-0">
-                <Sidebar />
+                <Sidebar isPro={isPro} />
             </div>
 
             <main className="md:pl-20 pt-16 h-full">

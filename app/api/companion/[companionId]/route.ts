@@ -3,6 +3,7 @@ import { auth, currentUser } from '@clerk/nextjs';
 import prismaClient from '@/lib/prisma-client';
 
 import { CompanionIdProps } from '@/app/(root)/(routes)/companion/[companionId]/page';
+import { checkSubscription } from '@/lib/subscription';
 
 
 export async function PATCH(req: Request, { params }: CompanionIdProps) {
@@ -21,6 +22,12 @@ export async function PATCH(req: Request, { params }: CompanionIdProps) {
 
         if (!src || !name || !description || !instructions || !seed || !categoryId) {
             return new NextResponse('Missing required fields', { status: 400 });
+        }
+
+        const isPro = await checkSubscription();
+
+        if (!isPro) {
+            return new NextResponse("Pro subscription required", { status: 403 });
         }
 
         const companion = await prismaClient.companion.update({

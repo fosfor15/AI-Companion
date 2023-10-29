@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import './globals.css';
+import ProModal from '@/components/pro-modal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default function GlobalLayout({ children }: { children: React.ReactNode})
                         defaultTheme="system"
                         enableSystem
                     >
+                        <ProModal />
                         { children }
                         <Toaster />
                     </ThemeProvider>
