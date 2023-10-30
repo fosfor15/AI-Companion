@@ -37,7 +37,7 @@ function Header({ isPro }: HeaderProps) {
                     </h2>
                 </Link>
 
-                <MobileSidebar />
+                <MobileSidebar isPro={isPro} />
             </div>
 
             <div className="flex gap-x-4 items-center">
